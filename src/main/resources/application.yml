@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:4000/test
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  liquibase:
+    change-log: change-log-root.xml

@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2" author="cheese" labels="create-books-table" context="bookshop">
+        <sql>
+            CREATE TABLE `bookshop`.`books` (
+                                                `id` bigint(20) AUTO_RANDOM NOT NULL,
+                                                `title` varchar(100) NOT NULL,
+                                                `type` enum('Magazine', 'Novel', 'Life', 'Arts', 'Comics', 'Education &amp; Reference', 'Humanities &amp; Social Sciences', 'Science &amp; Technology', 'Kids', 'Sports') NOT NULL,
+                                                `published_at` datetime NOT NULL,
+                                                `stock` int(11) DEFAULT '0',
+                                                `price` decimal(15,2) DEFAULT '0.0',
+                                                PRIMARY KEY (`id`) CLUSTERED
+            ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+        </sql>
+        <comment>create books table</comment>
+        <rollback> DROP TABLE `bookshop`.`books` </rollback>
+    </changeSet>
+
+    <changeSet id="3" author="cheese" labels="create-authors-table" context="bookshop">
+        <sql>
+            CREATE TABLE `bookshop`.`authors` (
+                                                  `id` bigint(20) AUTO_RANDOM NOT NULL,
+                                                  `name` varchar(100) NOT NULL,
+                                                  `gender` tinyint(1) DEFAULT NULL,
+                                                  `birth_year` smallint(6) DEFAULT NULL,
+                                                  `death_year` smallint(6) DEFAULT NULL,
+                                                  PRIMARY KEY (`id`) CLUSTERED
+            ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+        </sql>
+        <comment>create authors table</comment>
+        <rollback> DROP TABLE `bookshop`.`authors` </rollback>
+    </changeSet>
+</databaseChangeLog>
